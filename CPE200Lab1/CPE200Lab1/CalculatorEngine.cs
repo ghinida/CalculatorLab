@@ -57,7 +57,8 @@ namespace CPE200Lab1
 				return calculate(parts[1], parts[0], parts[2], 4);
 
 			}
-			catch{
+			catch(Exception ex){
+				Console.WriteLine(ex);
 				return "E";
 			}
 
@@ -98,12 +99,14 @@ namespace CPE200Lab1
 						try {
 							result = (1.0 / Convert.ToDouble(operand));
 						}
-						catch {
+						catch (Exception ex)
+						{
+							Console.WriteLine(ex);
 							return "E";
 						}
-                        
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
+
+						// split between integer part and fractional part
+						parts = result.ToString().Split('.');
                         // if integer part length is already break max output, return error
                         if (parts[0].Length > maxOutputSize)
                         {

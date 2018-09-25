@@ -31,9 +31,13 @@ namespace CPE200Lab1
 						numbers.Pop();
 						numbers.Push(unaryCalculate(parts[i], first, 8));
 					}
-					catch { }
+					catch (Exception ex)
+					{
+						Console.WriteLine(ex);
+						return "E";
+					}
 
-                    first = numbers.Peek();
+					first = numbers.Peek();
 					numbers.Pop();
                     numbers.Push(unaryCalculate(parts[i],first,8));
                 }
@@ -48,11 +52,13 @@ namespace CPE200Lab1
 						numbers.Pop();
 						numbers.Push(thismodCalculator(first, second, 8));
 					}
-					catch {
+					catch (Exception ex)
+					{
+						Console.WriteLine(ex);
 						return "E";
 					}
 
-                }
+				}
                 else if (isOperator(parts[i]))
                 {
 					string first, second;
@@ -63,20 +69,13 @@ namespace CPE200Lab1
 						numbers.Pop();
 						numbers.Push(calculate(parts[i], first, second, 8));
 					}
-					catch {
+					catch (Exception ex)
+					{
+						Console.WriteLine(ex);
 						return "E";
 					}
-                    /*if (numbers.Count < 2)
-                    {
-                        return "E";
-                    }
-                    string first, second;
-                    second = numbers.Peek();
-                    numbers.Pop();
-                    first = numbers.Peek();
-                    numbers.Pop();
-                    numbers.Push(calculate(parts[i], first, second, 8));*/
-                }
+					
+				}
 
             }
             if (numbers.Count == 1)
