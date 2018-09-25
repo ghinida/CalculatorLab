@@ -25,26 +25,48 @@ namespace CPE200Lab1
                 else if (thisisOperator(parts[i]))
                 {
                     string first;
+
+					try {
+						first = numbers.Peek();
+						numbers.Pop();
+						numbers.Push(unaryCalculate(parts[i], first, 8));
+					}
+					catch { }
+
                     first = numbers.Peek();
-                    numbers.Pop();
+					numbers.Pop();
                     numbers.Push(unaryCalculate(parts[i],first,8));
                 }
                 else if (isModOpreator(parts[i]))
                 {
                     string first, second;
-                    if (numbers.Count < 2)
-                    {
-                        return "E";
-                    }
-                    second = numbers.Peek();
-                    numbers.Pop();
-                    first = numbers.Peek();
-                    numbers.Pop();
-                    numbers.Push(thismodCalculator(first, second, 8));
+
+					try {
+						second = numbers.Peek();
+						numbers.Pop();
+						first = numbers.Peek();
+						numbers.Pop();
+						numbers.Push(thismodCalculator(first, second, 8));
+					}
+					catch {
+						return "E";
+					}
+
                 }
                 else if (isOperator(parts[i]))
                 {
-                    if (numbers.Count < 2)
+					string first, second;
+					try {
+						second = numbers.Peek();
+						numbers.Pop();
+						first = numbers.Peek();
+						numbers.Pop();
+						numbers.Push(calculate(parts[i], first, second, 8));
+					}
+					catch {
+						return "E";
+					}
+                    /*if (numbers.Count < 2)
                     {
                         return "E";
                     }
@@ -53,7 +75,7 @@ namespace CPE200Lab1
                     numbers.Pop();
                     first = numbers.Peek();
                     numbers.Pop();
-                    numbers.Push(calculate(parts[i], first, second, 8));
+                    numbers.Push(calculate(parts[i], first, second, 8));*/
                 }
 
             }
