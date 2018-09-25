@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
         public string Process(string str)
         {
@@ -27,7 +27,7 @@ namespace CPE200Lab1
                     string first;
                     first = numbers.Peek();
                     numbers.Pop();
-                    numbers.Push(unaryCalculate(parts[i],first,8));
+                    numbers.Push(calculate(parts[i],first,8));
                 }
                 else if (isModOpreator(parts[i]))
                 {
