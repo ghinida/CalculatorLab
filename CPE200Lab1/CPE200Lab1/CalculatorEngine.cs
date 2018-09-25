@@ -25,6 +25,7 @@ namespace CPE200Lab1
             }
             return false;
         }
+
         public bool isModOpreator(string str)
         {
             if(str == "%")
