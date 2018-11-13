@@ -18,6 +18,7 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        private string prev_operate;
 
         private void resetAll()
         {
@@ -62,6 +63,54 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
+                    if (prev_operate == "+")
+                    {
+                        return (Convert.ToDouble(firstOperand) + (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                    }
+                    if (prev_operate == "-")
+                    {
+                        return (Convert.ToDouble(firstOperand) - (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                    }
+                    if (prev_operate == "X")
+                    {
+                        return (Convert.ToDouble(firstOperand) * (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                    }
+                    if (prev_operate == "÷")
+                    {
+                        return (Convert.ToDouble(firstOperand) / (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                    }
+                    break;
+                case "1/x":
+                    double result2;
+                    string[] parts2;
+                    int remainLength2;
+                    if (Convert.ToDouble(firstOperand) != 0)
+                    {
+                        result2 = 1 / Convert.ToDouble(firstOperand);
+                        parts2 = result2.ToString().Split('.');
+                        if (parts2[0].Length > maxOutputSize)
+                        {
+                            return "E";
+                        }
+                        remainLength2 = maxOutputSize - parts2[0].Length - 1;
+                        return result2.ToString("N" + remainLength2);
+                    }
+                    break;
+                case "√":
+                    double result1;
+                    string[] parts1;
+                    int remainLength1;
+                    if (Convert.ToDouble(firstOperand) >= 0)
+                    {
+                        result1 = Math.Sqrt(Convert.ToDouble(firstOperand));
+                        parts1 = result1.ToString().Split('.');
+                        if (parts1[0].Length > maxOutputSize)
+                        {
+                            return "E";
+                        }
+                        remainLength1 = maxOutputSize - parts1[0].Length - 1;
+                        return result1.ToString("N" + remainLength1);
+                    }
                     break;
             }
             return "E";
