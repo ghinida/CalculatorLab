@@ -6,14 +6,27 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
+    /// <summary>
+    /// CalculatorEngine class.
+    /// This class is a base-class to RPNCalculatorEngine.
+    /// RPNCalculator can use all the functions in this class.
+    /// </summary>
     public class CalculatorEngine
     {
+        /// <summary>
+        /// Check the type of input if it's a number or not
+        /// </summary>
+        /// <returns>Boolen</returns>
         protected bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
+        /// <summary>
+        /// Check the type of input if it's an operator or not
+        /// </summary>
+        /// <returns>Boolen</returns>
         protected bool isOperator(string str)
         {
             switch(str) {
@@ -21,11 +34,22 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "%":
                     return true;
             }
             return false;
         }
 
+        /// <summary>
+        /// Process Function
+        /// Split input into parts
+        /// Check if 3 first parts are in Number-Operator-Number format or not. 
+        /// If not, the result will be "E".
+        /// Else if true, they will be calculated the result.
+        /// And push result back to part and then repeat the method untill get the final result.
+        /// </summary>
+        /// <param name="str">  input </param>
+        /// <returns> parts[0] </returns>
         public string Process(string str)
         {
             //Split input string to multiple parts by space
@@ -50,6 +74,14 @@ namespace CPE200Lab1
             }
             return parts[0];
         }
+
+        /// <summary>
+        /// An alternative method of "calculate" in case that the input is in unary form.
+        /// Calculate operand with operate
+        /// </summary>
+        /// <param name="operate"> input </param>
+        /// <param name="operand"> input </param>
+        /// <returns> result or E</returns>
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -98,6 +130,14 @@ namespace CPE200Lab1
             return "E";
         }
 
+        /// <summary>
+        /// An alternative method of "unaryCalculate" in case that the input is regular form.
+        /// Calculate firstOperand and secondOperand by operate
+        /// </summary>
+        /// <param name="operate">  input </param>
+        /// <param name="firstOperand">  input </param>
+        /// <param name="secondOperand">  input </param>
+        /// <returns> result or E</returns>
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
